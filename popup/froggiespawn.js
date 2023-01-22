@@ -25,6 +25,5 @@ async function updateContentScript() {
 }
 
 chrome.storage.sync.get(["addAnimal"], (result) => {
-  alert(result.addAnimal);
   spawnToggle.checked = result.addAnimal;
 })

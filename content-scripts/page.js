@@ -2,19 +2,26 @@
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // This is the whole message object that was sent from the popup
-    alert(spawn);
    
     // Pull out whether the user wants animals to spawn
 
     const spawn = message["addAnimal"];
 
-    // chrome.storage.sync.get("addAnimal", (result) => {
-    //     spawn = result.addAnimal;
-    // });
- 
+    chrome.storage.sync.get("addAnimal", (result) => {
+        spawn = result.addAnimal;
+    });
+
+    // alert(spawn)
+    
     if (spawn) {
         document.addEventListener('click', spawnAnimal);
     }
+
+    const spawnToggle = document.getElementById("spawnToggle");
+
+    spawnToggle.addEventListener("change", deleteAnimals(spawn));
+
+
 
     // if (spawn) {
     //     let docBody = document.createElement('div');
@@ -66,6 +73,12 @@ function spawnAnimal (e) {
 }
 
 
-// function addAnimal (element) {
+function deleteAnimals (spawn) {
+    if(!spawn) {
+        const animals = document.querySelectorAll('.animal');
 
-// }   
+        animals.forEach(animal => {
+            animal.style.display = 'none';
+        })
+    }
+}   
