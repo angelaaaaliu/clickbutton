@@ -18,5 +18,8 @@
             "css": [
             ]
         }
+    ],
+    "permissions": [
+        "storage"
     ]
 }

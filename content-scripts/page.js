@@ -1,17 +1,31 @@
 // Add a message listener that listens for a message from the popup
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // This is the whole message object that was sent from the popup
-    console.log('hi');
-    console.log(message);
+    alert(spawn);
    
     // Pull out whether the user wants animals to spawn
+
     const spawn = message["addAnimal"];
 
-    console.log(spawn);
-
+    // chrome.storage.sync.get("addAnimal", (result) => {
+    //     spawn = result.addAnimal;
+    // });
+ 
     if (spawn) {
-        document.body.addEventListener("onclick", spawnAnimal)
+        document.addEventListener('click', spawnAnimal);
     }
+
+    // if (spawn) {
+    //     let docBody = document.createElement('div');
+    //     docBody.style.position = 'absolute';
+    //     docBody.style.width = "100vw";
+    //     docBody.style.height = "100vh";
+    //     docBody.style.zIndex = "999";
+    //     document.body.appendChild(docBody);
+
+    //     docBody.addEventListener("click", spawnAnimal);
+    // }
   
     // // Get the current color of the background to send it back to the popup
     // const oldColor = getComputedStyle(document.body).backgroundColor;
@@ -23,10 +37,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // sendResponse(`the color has been changed from ${oldColor} to ${newColor}!`);
   });
 
-const animals = new Array("images/bear.png", "images/frog.png", "images/ken.png", "images/pig.png", "images/whale.png", )
+
+
+const animals = new Array("https://raw.githubusercontent.com/angelaaaaliu/clickbutton/main/animals/bear.png",
+ "https://raw.githubusercontent.com/angelaaaaliu/clickbutton/main/animals/frog.png",
+  "https://raw.githubusercontent.com/angelaaaaliu/clickbutton/main/animals/ken.png", 
+  "https://raw.githubusercontent.com/angelaaaaliu/clickbutton/main/animals/pig.png", 
+  "https://raw.githubusercontent.com/angelaaaaliu/clickbutton/main/animals/whale.png" );
 
 function spawnAnimal (e) {
-    
+
     let cursorX = e.clientX;
     let cursorY = e.clientY;
 
@@ -38,6 +58,8 @@ function spawnAnimal (e) {
     animal.classList.add("animal");
     animal.style.left = cursorX + "px";
     animal.style.top = cursorY + "px";
+    animal.style.position = 'absolute';
+    animal.style.zIndex = '1000';
 
     document.body.appendChild(animal);
 

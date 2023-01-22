@@ -8,7 +8,12 @@ spawnToggle.addEventListener("change", (e) => updateContentScript());
 
 
 async function updateContentScript() {
-    const message = {addAnimal: spawnToggle.checked};
+
+    let toggleState = spawnToggle.checked;
+
+    chrome.storage.sync.set({addAnimal: toggleState});
+
+    const message = {addAnimal: toggleState};
     const [tab] = await chrome.tabs.query({
         active: true,
         lastFocusedWindow: true,
@@ -19,5 +24,7 @@ async function updateContentScript() {
 
 }
 
-
-
+chrome.storage.sync.get(["addAnimal"], (result) => {
+  alert(result.addAnimal);
+  spawnToggle.checked = result.addAnimal;
+})
