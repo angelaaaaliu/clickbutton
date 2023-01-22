@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Spawn",
+    "description": "just do it!",
+    "version": "1.0",
+    "action": {
+        "default_popup": "popup/froggiespawn.html",
+        "default_icon": "icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "js": [
+                "content-scripts/page.js"
+            ],
+            "css": [
+            ]
+        }
+    ]
+}
