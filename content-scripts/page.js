@@ -1,17 +1,11 @@
 // Add a message listener that listens for a message from the popup
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    // This is the whole message object that was sent from the popup
    
     // Pull out whether the user wants animals to spawn
 
     const spawn = message["addAnimal"];
 
-    // chrome.storage.sync.get("addAnimal", (result) => {
-    //     spawn = result.addAnimal;
-    // });
-
-    // alert(spawn)
     
     if (spawn) {
         document.addEventListener('click', spawnAnimal);
@@ -21,27 +15,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     spawnToggle.addEventListener("change", deleteAnimals(spawn));
 
-
-
-    // if (spawn) {
-    //     let docBody = document.createElement('div');
-    //     docBody.style.position = 'absolute';
-    //     docBody.style.width = "100vw";
-    //     docBody.style.height = "100vh";
-    //     docBody.style.zIndex = "999";
-    //     document.body.appendChild(docBody);
-
-    //     docBody.addEventListener("click", spawnAnimal);
-    // }
-  
-    // // Get the current color of the background to send it back to the popup
-    // const oldColor = getComputedStyle(document.body).backgroundColor;
-  
-    // // Set the background color to the new color
-    // document.body.style.backgroundColor = newColor;
-  
-    // // Use the sendResponse function passed in by chrome to send a response
-    // sendResponse(`the color has been changed from ${oldColor} to ${newColor}!`);
   });
 
 

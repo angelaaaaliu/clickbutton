@@ -11,7 +11,6 @@ async function updateContentScript() {
 
     let toggleState = spawnToggle.checked;
 
-    // chrome.storage.sync.set({addAnimal: toggleState});
 
     const message = {addAnimal: toggleState};
     const [tab] = await chrome.tabs.query({
@@ -24,6 +23,3 @@ async function updateContentScript() {
 
 }
 
-// chrome.storage.sync.get(["addAnimal"], (result) => {
-//   spawnToggle.checked = result.addAnimal;
-// })
