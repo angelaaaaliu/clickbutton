@@ -7,9 +7,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     const spawn = message["addAnimal"];
 
-    chrome.storage.sync.get("addAnimal", (result) => {
-        spawn = result.addAnimal;
-    });
+    // chrome.storage.sync.get("addAnimal", (result) => {
+    //     spawn = result.addAnimal;
+    // });
 
     // alert(spawn)
     
